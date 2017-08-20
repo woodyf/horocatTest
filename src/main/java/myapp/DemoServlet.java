@@ -18,6 +18,7 @@ package myapp;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DemoServlet extends HttpServlet {
 	private static final long serialVersionUID = -330119396067396L;
+	private static final Logger log = Logger.getLogger(DemoServlet.class.getName());
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -35,9 +37,7 @@ public class DemoServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String[]> paramMap = req.getParameterMap();
 		for (String key : paramMap.keySet()) {
-			System.out.print(key);
-			System.out.print(":");
-			System.out.print(paramMap.get(key));
+			log.info(key+":"+paramMap.get(key));
 		}
 	}
 }
