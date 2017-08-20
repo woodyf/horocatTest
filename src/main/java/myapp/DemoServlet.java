@@ -37,7 +37,9 @@ public class DemoServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Map<String, String[]> paramMap = req.getParameterMap();
 		for (String key : paramMap.keySet()) {
-			log.info(key+":"+paramMap.get(key));
+			log.info(key);
+			log.info(":");
+			log.info(paramMap.get(key)[0]);
 		}
 	}
 }
