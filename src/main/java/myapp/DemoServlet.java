@@ -16,8 +16,8 @@
 
 package myapp;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -35,11 +35,17 @@ public class DemoServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		Map<String, String[]> paramMap = req.getParameterMap();
-		for (String key : paramMap.keySet()) {
-			log.info(key);
-			log.info(":");
-			log.info(paramMap.get(key)[0]);
-		}
+		StringBuilder sb = new StringBuilder();
+	    BufferedReader reader = req.getReader();
+	    try {
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            sb.append(line).append('\n');
+	        }
+	    } finally {
+	        reader.close();
+	    }
+	    System.out.println(sb);
+	    log.info(sb.toString());
 	}
 }
